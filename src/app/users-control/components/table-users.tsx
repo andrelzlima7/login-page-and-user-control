@@ -8,6 +8,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getUsers } from "../_server-actions/get-users";
+import { DateFormatting } from "@/utils/date-formatting";
+import { IdFormatter } from "@/utils/Id-formatter";
+import CopyId from "./copy-id";
+import BadgeStatus from "./badge-status";
+import BadgeRole from "./badge-role";
 
 const TableUsers = async () => {
   const { users, total } = await getUsers();
@@ -23,18 +28,32 @@ const TableUsers = async () => {
             <TableHead>Usuário</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Função</TableHead>
+            <TableHead>Opções</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {users.map((user) => {
             return (
-              <TableRow key={user.id}>
-                <TableCell>{DateFormatting.shortDate(user.createAt)}</TableCell>
-                <TableCell>{user.id}</TableCell>
+              <TableRow key={user.id} className="odd:bg-muted">
+                <TableCell>{DateFormatting.longDate(user.createAt)}</TableCell>
+                <TableCell>
+                  <div
+                    className="flex items-center justify-center"
+                    title={user.id}
+                  >
+                    {IdFormatter.shortId(user.id)}
+                    <CopyId id={user.id} />
+                  </div>
+                </TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.userName}</TableCell>
-                <TableCell>{user.status}</TableCell>
-                <TableCell>{user.role}</TableCell>
+                <TableCell>
+                  <BadgeStatus status={user.status} />
+                </TableCell>
+                <TableCell>
+                  <BadgeRole role={user.role} />
+                </TableCell>
+                <TableCell></TableCell>
               </TableRow>
             );
           })}
