@@ -10,16 +10,18 @@ datasource db {
 
 model User {
   id       String     @id @default(uuid())
+  createAt DateTime   @default(now())
   name     String
   userName String
   password String
-  status   UserStatus @default(ACTIVE)
+  status   UserStatus @default(PENDING)
   role     UserRole
 }
 
 enum UserStatus {
   ACTIVE
   INACTIVE
+  PENDING
 }
 
 enum UserRole {
