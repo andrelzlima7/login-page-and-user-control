@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Users } from "lucide-react";
 import Link from "next/link";
+import { ToggleTheme } from "../theme/toggle-theme";
 
 const AppSidebar = () => {
   return (
@@ -42,7 +43,15 @@ const AppSidebar = () => {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <ToggleTheme />
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 };
