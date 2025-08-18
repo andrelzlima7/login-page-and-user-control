@@ -12,6 +12,8 @@ import {
 import { Users } from "lucide-react";
 import Link from "next/link";
 import { ToggleTheme } from "../theme/toggle-theme";
+import Profile from "./profile";
+import LogoutButton from "./logout-button";
 
 const AppSidebar = () => {
   return (
@@ -49,6 +51,16 @@ const AppSidebar = () => {
             <SidebarMenuButton asChild>
               <ToggleTheme />
             </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <Profile />
+          </SidebarMenuItem>
+        </SidebarMenu>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <LogoutButton />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
