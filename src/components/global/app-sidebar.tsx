@@ -36,7 +36,7 @@ const AppSidebar = () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href={"/users-control"}>
+                <Link href={"/users-control?page=1"}>
                   <Users />
                   <span>Controle de Usuários</span>
                 </Link>

@@ -15,6 +15,7 @@ import CopyId from "./copy-id";
 import DialogUpdateStatus from "./dialog-update-status";
 import DialogUpdateRole from "./dialog-update-role";
 import Pagination from "./pagination";
+import PopoverOptions from "./popover-options";
 
 interface PropsTableUsers {
   currentPage?: number;
@@ -61,7 +62,9 @@ const TableUsers = async ({ currentPage }: PropsTableUsers) => {
                 <TableCell>
                   <DialogUpdateRole id={user.id} role={user.role} />
                 </TableCell>
-                <TableCell></TableCell>
+                <TableCell>
+                  <PopoverOptions id={user.id} />
+                </TableCell>
               </TableRow>
             );
           })}
