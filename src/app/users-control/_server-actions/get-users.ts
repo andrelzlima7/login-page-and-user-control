@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import { prisma } from "@/lib/prisma";
 
 export async function getUsers() {
@@ -13,6 +13,7 @@ export async function getUsers() {
         status: true,
         userName: true,
       },
+      orderBy: { name: "asc" },
     }),
     prisma.user.count(),
   ]);

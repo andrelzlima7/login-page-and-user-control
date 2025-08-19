@@ -11,8 +11,8 @@ import { getUsers } from "../_server-actions/get-users";
 import { DateFormatting } from "@/utils/date-formatting";
 import { IdFormatter } from "@/utils/Id-formatter";
 import CopyId from "./copy-id";
-import BadgeStatus from "./badge-status";
-import BadgeRole from "./badge-role";
+import DialogUpdateStatus from "./dialog-update-status";
+import DialogUpdateRole from "./dialog-update-role";
 
 const TableUsers = async () => {
   const { users, total } = await getUsers();
@@ -48,10 +48,10 @@ const TableUsers = async () => {
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.userName}</TableCell>
                 <TableCell>
-                  <BadgeStatus status={user.status} />
+                  <DialogUpdateStatus id={user.id} status={user.status} />
                 </TableCell>
                 <TableCell>
-                  <BadgeRole role={user.role} />
+                  <DialogUpdateRole id={user.id} role={user.role} />
                 </TableCell>
                 <TableCell></TableCell>
               </TableRow>
