@@ -1,9 +1,18 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 
-export async function getUsers() {
+type Params = {
+  page?: number;
+};
+
+export async function getUsers({ page = 1 }: Params) {
+  const take = 10;
+  const skip = (page - 1) * take;
+
   const [users, total] = await Promise.all([
     prisma.user.findMany({
+      skip,
+      take,
       select: {
         id: true,
         createAt: true,
@@ -17,5 +26,5 @@ export async function getUsers() {
     }),
     prisma.user.count(),
   ]);
-  return { users, total };
+  return { users, total, page, totalPages: Math.ceil(total / take) };
 }

@@ -3,6 +3,7 @@ import {
   TableBody,
   TableCaption,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -13,9 +14,16 @@ import { IdFormatter } from "@/utils/Id-formatter";
 import CopyId from "./copy-id";
 import DialogUpdateStatus from "./dialog-update-status";
 import DialogUpdateRole from "./dialog-update-role";
+import Pagination from "./pagination";
 
-const TableUsers = async () => {
-  const { users, total } = await getUsers();
+interface PropsTableUsers {
+  currentPage?: number;
+}
+
+const TableUsers = async ({ currentPage }: PropsTableUsers) => {
+  const page = currentPage || 1;
+
+  const { users, total, totalPages } = await getUsers({ page });
   return (
     <div className="rounded-xl border p-4">
       <Table>
@@ -58,6 +66,17 @@ const TableUsers = async () => {
             );
           })}
         </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={12}>
+              <Pagination
+                page={page}
+                totalPages={totalPages}
+                route="users-control"
+              />
+            </TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
     </div>
   );
